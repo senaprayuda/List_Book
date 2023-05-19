@@ -1,0 +1,72 @@
+﻿@model IEnumerable<GSI_M5_P1_13.Models.GuestBookModel>
+
+@{
+    ViewData["Title"] = "ListGuest";
+}
+
+<h1>ListGuest</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.alamat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.provinsi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jenisKelamin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tanggalLahir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pesan)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.alamat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.provinsi)
+            </td>
+            <td>
+                    @if (item.jenisKelamin == 1)
+                    {
+                        <text>Laki-laki</text>
+                    }
+                    else
+                    {
+                        <text>Perempuan</text>
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tanggalLahir)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pesan)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditGuest", new {  id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "DeleteGuest", new {  id=item.id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
